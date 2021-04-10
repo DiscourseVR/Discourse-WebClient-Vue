@@ -2,32 +2,45 @@
   <div class="container">
     <div>
       <h1 class="title">
-        discourse-webclient-vue
+        DiscourseVR
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+      <div class="vidlist-body">
+        <div
+          v-for="vidLink in vidList"
+          :key="vidLink"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+          <NuxtLink :to="`/videos/${vidLink.name}`">
+            {{ vidLink.name }}
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { getVideoIndex } from '../services/videos.service'
+
+export default {
+
+  name: 'Index',
+
+  data () {
+    return {
+      vidList: []
+    }
+  },
+
+  async mounted () {
+    this.vidList = await getVideoIndex()
+      .then(data => data)
+  },
+
+  methods: {
+
+  }
+
+}
 </script>
 
 <style>
