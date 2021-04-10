@@ -1,23 +1,16 @@
 <template>
-  <v-col>
-    <p>{{ filename }}</p>
-    <video
-      ref="videoPlayer"
-      controls
-    >
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
-  </v-col>
+  <div>
+    <!-- eslint-disable -->
+    <videoplayer :vidUrl="$route.params.slug" />
+  </div>
 </template>
 
 <script>
+import videoplayer from '../../components/videoplayer'
+
 export default {
-  props: {
-    filename: {
-      type: String,
-      default: 'File name'
-    }
-  },
+  components: { videoplayer },
+
   head () {
     return {
       title: this.filename,
