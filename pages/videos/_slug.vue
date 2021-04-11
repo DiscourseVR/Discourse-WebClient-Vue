@@ -9,15 +9,15 @@
 import videoplayer from '../../components/videoplayer'
 
 export default {
-  components: { videoplayer },
+  components: { videoplayer }
 
-  head () {
-    return {
-      title: this.filename,
-      meta: [
-        { hid: 'description', name: 'description', content: 'The video' }
-      ]
-    }
-  }
+  // head () {
+  //   return {
+  //     title: 'DiscourseVR',
+  //     meta: [
+  //       { hid: 'description', name: 'description', content: 'The video' }
+  //     ]
+  //   }
+  // }
 }
 </script>

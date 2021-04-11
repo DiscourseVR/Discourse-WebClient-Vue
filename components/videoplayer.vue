@@ -8,14 +8,23 @@
       muted
       @timeupdate="syncCurrentTime"
     >
-      <source :src="vidUrl">
+      <source :src="getVideoUrl(vidUrl)">
     </video>
     <p>curTime {{ curTime }}</p>
+    <div>
+      <p
+        v-for="cmt in commentList"
+        :key="cmt"
+      >
+        {{ cmt }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 import { API_URL } from '../config'
+import { getCommentByName } from '../services/videos.service'
 
 export default {
 
@@ -30,8 +39,13 @@ export default {
 
   data () {
     return {
-      curTime: 0
+      curTime: 0,
+      commentList: []
     }
+  },
+
+  async mounted () {
+    this.commentList = await getCommentByName(this.vidUrl)
   },
 
   methods: {
@@ -40,7 +54,7 @@ export default {
     },
 
     getVideoUrl (videoName) {
-      return API_URL + '/vids/' + videoName
+      return API_URL + '/vids/' + videoName + '.mp4'
     }
 
   }
