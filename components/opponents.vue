@@ -64,18 +64,16 @@
         </div>
       </div>
     </div>
-
-    <!--{{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]-->
   </div>
 </template>
 
 <script>
-import { API_URL } from '../config'
-import { getCommentByName } from '../services/videos.service'
+import { speechAnalysis } from '../services/analytics.service'
+import { getRawAudio, getTranscript, beginAsyncTranscript } from '../services/transcript.service'
 
 export default {
 
-  name: 'VideoPlayer',
+  name: 'Opponents',
 
   props: {
     vidUrl: {
@@ -86,76 +84,33 @@ export default {
 
   data () {
     return {
-      curTime: 0,
-      commentList: []
+      playerOneTranscript: '',
+      playerTwoTranscript: '',
+      playerOneStats: {
+        word_count: 0,
+        uniqueWords: 0,
+        fillerCount: 0,
+        mostUsed: ''
+      },
+      playerTwoStats: {
+        word_count: 0,
+        uniqueWords: 0,
+        fillerCount: 0,
+        mostUsed: ''
+      }
     }
   },
 
   async mounted () {
-    this.commentList = await getCommentByName(this.vidUrl)
+    const raw = await getRawAudio(this.vidUrl + '_0.mp3')
+    const res = await beginAsyncTranscript(raw)
+    setTimeout(async () => {
+      const transcription = await getTranscript(res.data.name)
+      this.playerOneTranscript = speechAnalysis(transcription)
+    }, 30000)
   },
 
   methods: {
-    syncCurrentTime () {
-      this.curTime = this.$refs?.video?.currentTime
-    },
-
-    getVideoUrl (videoName) {
-      return API_URL + '/vids/' + videoName + '.mp4'
-    },
-
-    getVisibleComments () {
-      // this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
-      return [
-        {
-          message: 'Debate is not for the weak.',
-          timestamp: 1
-        },
-        {
-          message: 'I love your debate. I came in my pants.',
-          timestamp: 12
-        },
-        {
-          message: 'why u always gotta bring hitler into the argument',
-          timestamp: 22
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        }
-      ].filter(cmt => parseInt(cmt.timestamp) < this.curTime)
-    },
-    seek (time) {
-      this.$refs.video.currentTime = time
-    }
 
   }
 

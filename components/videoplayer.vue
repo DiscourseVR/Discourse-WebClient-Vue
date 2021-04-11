@@ -24,7 +24,6 @@
         @click.native="seek(cmt.timestamp)"
       />
     </div>
-    <!--{{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]-->
   </div>
 </template>
 
@@ -50,8 +49,12 @@ export default {
     }
   },
 
-  async mounted () {
-    this.commentList = await getCommentByName(this.vidUrl)
+  mounted () {
+    getCommentByName(this.vidUrl)
+      .then(
+        (data) => { this.commentList = [...data] },
+        err => console.log(err)
+      )
   },
 
   methods: {
@@ -64,53 +67,7 @@ export default {
     },
 
     getVisibleComments () {
-      // this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
-      return [
-        {
-          message: 'Debate is not for the weak.',
-          timestamp: 1
-        },
-        {
-          message: 'I love your debate. I came in my pants.',
-          timestamp: 12
-        },
-        {
-          message: 'why u always gotta bring hitler into the argument',
-          timestamp: 22
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        },
-        {
-          message: 'good job show feet pics next time',
-          timestamp: 24
-        }
-      ].filter(cmt => parseInt(cmt.timestamp) < this.curTime)
+      return this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
     },
     seek (time) {
       this.$refs.video.currentTime = time

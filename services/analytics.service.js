@@ -36,7 +36,6 @@ export const speechAnalysis = (rawText) => {
     }
   }
   analysis.mostUsed = maxWord
-  console.log(Object.keys(wordDict))
 
   return analysis
 }
