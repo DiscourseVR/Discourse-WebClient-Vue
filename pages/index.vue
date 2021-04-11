@@ -13,7 +13,7 @@
           <img alt="moto" :src="'/debate/podium.png'" class="absolute -right-20 -bottom-8 h-40 w-40 mb-4">
           <div class="w-4/6">
             <p class="text-gray-800 text-lg font-medium mb-2">
-              This house would abolish homework.
+              Debate Recording
             </p>
             <p class="text-gray-400 text-xs">
               {{ vidLink.name }}
@@ -43,7 +43,12 @@ export default {
 
   data () {
     return {
-      vidList: []
+      vidList: [],
+      topicList: [
+        'This house would abolish homework.',
+        'This house would abolish homework.',
+        'This house would abolish homework.'
+      ]
     }
   },
 

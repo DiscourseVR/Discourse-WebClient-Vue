@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import { speechAnalysis } from '../services/analytics.service'
-import { getRawAudio, getTranscript, beginAsyncTranscript } from '../services/transcript.service'
+// import { speechAnalysis } from '../services/analytics.service'
+// import { getRawAudio, getTranscript, beginAsyncTranscript } from '../services/transcript.service'
 
 export default {
 
@@ -102,18 +102,18 @@ export default {
   },
 
   async mounted () {
-    const raw1 = await getRawAudio(this.vidUrl + '_0.mp3')
-    const res1 = await beginAsyncTranscript(raw1)
-    setTimeout(async () => {
-      const transcription = await getTranscript(res1.data.name)
-      this.playerOneTranscript = speechAnalysis(transcription)
-    }, 30000)
-    const raw2 = await getRawAudio(this.vidUrl + '_1.mp3')
-    const res2 = await beginAsyncTranscript(raw2)
-    setTimeout(async () => {
-      const transcription = await getTranscript(res2.data.name)
-      this.playerOneTranscript = speechAnalysis(transcription)
-    }, 30000)
+    // const raw1 = await getRawAudio(this.vidUrl + '_0.mp3')
+    // const res1 = await beginAsyncTranscript(raw1)
+    // setTimeout(async () => {
+    //   const transcription = await getTranscript(res1.data.name)
+    //   this.playerOneTranscript = speechAnalysis(transcription)
+    // }, 30000)
+    // const raw2 = await getRawAudio(this.vidUrl + '_1.mp3')
+    // const res2 = await beginAsyncTranscript(raw2)
+    // setTimeout(async () => {
+    //   const transcription = await getTranscript(res2.data.name)
+    //   this.playerOneTranscript = speechAnalysis(transcription)
+    // }, 30000)
   },
 
   methods: {
