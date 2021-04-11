@@ -4,10 +4,11 @@
       <h1 class="title">
         DiscourseVR
       </h1>
-      <div class="vidlist-body">
+      <div class="flex flex-wrap gap-4">
         <div
           v-for="(vidLink,ind) in vidList"
           :key="ind"
+          class="bg-blue-200 shadow-lg w-96 h-64"
         >
           <NuxtLink :to="`/videos/${vidLink.name}`">
             {{ vidLink.name }}

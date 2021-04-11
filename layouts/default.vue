@@ -97,7 +97,7 @@ export default {
   data () {
     return {
       navBar: [
-        { name: 'Home', dest: '/' }, { name: 'Chat Bubbles', dest: 'chatbubbles' }
+        { name: 'Home', dest: '/' }, { name: 'Chat Bubbles', dest: '/chatbubbles' }
       ]
     }
   }

@@ -1,25 +1,30 @@
 <template>
-  <div>
-    <p>{{ getVideoUrl(vidUrl) }}</p>
-    <video
-      ref="video"
-      controls
-      autoPlay
-      muted
-      @timeupdate="syncCurrentTime"
-    >
-      <source :src="getVideoUrl(vidUrl)">
-    </video>
-    <p>curTime {{ curTime }}</p>
-    <!-- <div>
+  <div class="h-full flex space-x-4 overflow-hidden">
+    <div class="object-scale-down mx-4 container w-2/3">
+      <video
+        ref="video"
+        controls
+        autoPlay
+        muted
+        @timeupdate="syncCurrentTime"
+      >
+        <source :src="getVideoUrl(vidUrl)">
+      </video>
+    </div>
+    <div class="overflow-y-auto overflow-x-hidden w-1/4 bg-pink-50 flex flex-col items-center">
+      <h1 class="font-bold text-3xl m-10">
+        Comments:
+      </h1>
       <chatbubble
         v-for="(cmt,ind) in getVisibleComments(commentList)"
         :key="ind"
         :message="cmt.message"
         :timestamp="cmt.timestamp"
+        @click.native="seek(cmt.timestamp)"
       />
-      {{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]
-    </div> -->
+    </div>
+
+    <!--{{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]-->
   </div>
 </template>
 
@@ -51,7 +56,7 @@ export default {
 
   methods: {
     syncCurrentTime () {
-      this.curTime = this.$refs.video.currentTime
+      this.curTime = this.$refs?.video?.currentTime
     },
 
     getVideoUrl (videoName) {
@@ -59,7 +64,29 @@ export default {
     },
 
     getVisibleComments () {
-      return this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
+      // this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
+      return [
+        {
+          message: 'Debate is not for the weak.',
+          timestamp: 1
+        },
+        {
+          message: 'I love your debate. I came in my pants.',
+          timestamp: 12
+        },
+        {
+          message: 'why u always gotta bring hitler into the argument',
+          timestamp: 22
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        }
+      ].filter(cmt => parseInt(cmt.timestamp) < this.curTime)
+    },
+    seek (time) {
+      console.log('hello')
+      this.$refs.video.currentTime = time
     }
 
   }
