@@ -1,18 +1,27 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="title">
+      <h1 class="title mb-10">
         DiscourseVR
       </h1>
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 justify-center">
         <div
           v-for="(vidLink,ind) in vidList"
           :key="ind"
-          class="bg-blue-200 shadow-lg w-96 h-64"
+          class="shadow-lg rounded-2xl w-64 p-4 bg-white relative overflow-hidden"
         >
-          <NuxtLink :to="`/videos/${vidLink.name}`">
-            {{ vidLink.name }}
-          </NuxtLink>
+          <img alt="moto" :src="'/debate/podium.png'" class="absolute -right-20 -bottom-8 h-40 w-40 mb-4">
+          <div class="w-4/6">
+            <p class="text-gray-800 text-lg font-medium mb-2">
+              This house would abolish homework.
+            </p>
+            <p class="text-gray-400 text-xs">
+              {{ vidLink.name }}
+            </p>
+            <NuxtLink :to="`/videos/${vidLink.name}`" class="text-indigo-500 text-xl font-medium">
+              View More ->
+            </NuxtLink>
+          </div>
         </div>
 
         <button @click="testAnalytics">

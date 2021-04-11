@@ -11,7 +11,7 @@
         <source :src="getVideoUrl(vidUrl)">
       </video>
     </div>
-    <div class="overflow-y-auto overflow-x-hidden w-1/4 bg-pink-50 flex flex-col items-center">
+    <div class="overflow-y-auto overflow-x-hidden w-1/4 bg-indigo-50 flex flex-col items-center">
       <h1 class="font-bold text-3xl m-10">
         Comments:
       </h1>
@@ -20,6 +20,7 @@
         :key="ind"
         :message="cmt.message"
         :timestamp="cmt.timestamp"
+        class="chatbubble"
         @click.native="seek(cmt.timestamp)"
       />
     </div>
@@ -85,7 +86,6 @@ export default {
       ].filter(cmt => parseInt(cmt.timestamp) < this.curTime)
     },
     seek (time) {
-      console.log('hello')
       this.$refs.video.currentTime = time
     }
 
@@ -95,5 +95,7 @@ export default {
 </script>
 
 <style>
-
+.chatbubble {
+  cursor: pointer;
+}
 </style>
