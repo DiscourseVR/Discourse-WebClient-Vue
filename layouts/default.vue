@@ -58,6 +58,12 @@
             </div>
           </div>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <button
+              class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border--500 hover:border-transparent rounded"
+              @click="pushExternal"
+            >
+              Download
+            </button>
             <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span class="sr-only">View notifications</span>
               <!-- Heroicon name: outline/bell -->
@@ -97,8 +103,15 @@ export default {
   data () {
     return {
       navBar: [
-        { name: 'Home', dest: '/' }, { name: 'Chat Bubbles', dest: '/chatbubbles' }
+        { name: 'Home', dest: '/' }
       ]
+    }
+  },
+
+  methods: {
+    pushExternal (e) {
+      e.preventDefault()
+      window.location = 'https://files.discoursevr.space'
     }
   }
 }

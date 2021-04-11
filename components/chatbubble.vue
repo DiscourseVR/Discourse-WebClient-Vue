@@ -21,8 +21,8 @@ export default {
       default: 'File name'
     },
     timestamp: {
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     }
   },
   methods: {

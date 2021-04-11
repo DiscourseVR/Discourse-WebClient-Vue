@@ -7,7 +7,7 @@
             Debator 1 Word Count:
           </span>
           <span class="text-yellow-500 text-4xl md:text-5xl mt-2 font-black block">
-            75,858,724
+            {{ playerOneStats.word_count }}
           </span>
         </div>
         <div class="self-end">
@@ -23,11 +23,11 @@
               >
                 <path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z" />
               </svg>
-              10 filler words
+              {{ playerOneStats.fillerCount }} filler words
             </p>
           </div>
           <p class="text-lg text-gray-600 md:text-right text-left dark:text-gray-400 md:block inline-block md:mb-0">
-            Most Used word:
+            Most Used Word: {{ playerOneStats.mostUsed }}
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@
             Debator 2 Word Count:
           </span>
           <span class="text-blue-500 text-4xl md:text-5xl mt-2 font-black block">
-            75,858,724
+            {{ playerTwoStats.word_count }}
           </span>
         </div>
         <div class="self-end">
@@ -55,11 +55,11 @@
               >
                 <path d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z" />
               </svg>
-              10 filler words
+              {{ playerTwoStats.fillerCount }} filler words
             </p>
           </div>
           <p class="text-lg text-gray-600 md:text-right text-left dark:text-gray-400 md:block inline-block md:mb-0">
-            Most Used Word:
+            Most Used Word: {{ playerTwoStats.mostUsed }}
           </p>
         </div>
       </div>
@@ -102,10 +102,16 @@ export default {
   },
 
   async mounted () {
-    const raw = await getRawAudio(this.vidUrl + '_0.mp3')
-    const res = await beginAsyncTranscript(raw)
+    const raw1 = await getRawAudio(this.vidUrl + '_0.mp3')
+    const res1 = await beginAsyncTranscript(raw1)
     setTimeout(async () => {
-      const transcription = await getTranscript(res.data.name)
+      const transcription = await getTranscript(res1.data.name)
+      this.playerOneTranscript = speechAnalysis(transcription)
+    }, 30000)
+    const raw2 = await getRawAudio(this.vidUrl + '_1.mp3')
+    const res2 = await beginAsyncTranscript(raw2)
+    setTimeout(async () => {
+      const transcription = await getTranscript(res2.data.name)
       this.playerOneTranscript = speechAnalysis(transcription)
     }, 30000)
   },

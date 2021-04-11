@@ -21,7 +21,7 @@
         :message="cmt.message"
         :timestamp="cmt.timestamp"
         class="chatbubble"
-        @click.native="seek(cmt.timestamp)"
+        @click.native="seek(parseInt(cmt.timestamp))"
       />
     </div>
   </div>
@@ -53,7 +53,7 @@ export default {
     getCommentByName(this.vidUrl)
       .then(
         (data) => { this.commentList = [...data] },
-        err => console.log(err)
+        (err) => { console.log(err); this.commentList = [] }
       )
   },
 
