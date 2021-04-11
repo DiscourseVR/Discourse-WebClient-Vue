@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="mx-2">
     <div
-      class="bg-gray-300 w-72 mx-4 my-2 p-2 rounded-3xl transition duration-500 ease-in-out hover:scale-110 transform"
+      class="items-center bg-gray-300 w-72 mx-4 my-2 p-2 rounded-tl-xl rounded-tr-xl rounded-bl-xl transition duration-500 ease-in-out hover:scale-110 transform"
     >
       {{ message }}
     </div>
@@ -24,6 +24,18 @@ export default {
       type: Number,
       default: 0
     }
+  },
+  methods: {
+    setTime () {
+      this.$refs.video.currentTime = this.timestamp
+    }
   }
 }
 </script>
+<style scoped>
+.container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+</style>

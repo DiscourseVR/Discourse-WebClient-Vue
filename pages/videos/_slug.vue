@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <!-- eslint-disable -->
     <videoplayer :vidUrl="$route.params.slug" />
   </div>
