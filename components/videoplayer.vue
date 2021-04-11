@@ -11,14 +11,15 @@
       <source :src="getVideoUrl(vidUrl)">
     </video>
     <p>curTime {{ curTime }}</p>
-    <div>
-      <p
-        v-for="(cmt,ind) in commentList"
+    <!-- <div>
+      <chatbubble
+        v-for="(cmt,ind) in getVisibleComments(commentList)"
         :key="ind"
-      >
-        {{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]
-      </p>
-    </div>
+        :message="cmt.message"
+        :timestamp="cmt.timestamp"
+      />
+      {{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]
+    </div> -->
   </div>
 </template>
 
@@ -58,7 +59,7 @@ export default {
     },
 
     getVisibleComments () {
-
+      return this.commentList.filter(cmt => parseInt(cmt.timestamp) < this.curTime)
     }
 
   }
