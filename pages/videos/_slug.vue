@@ -2,7 +2,10 @@
   <div class="overflow-hidden">
     <!-- eslint-disable -->
     <videoplayer :vidUrl="$route.params.slug" />
+
+    <opponents :vidUrl="$route.params.slug" />
   </div>
+
 </template>
 
 <script>

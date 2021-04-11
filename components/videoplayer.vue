@@ -11,8 +11,8 @@
         <source :src="getVideoUrl(vidUrl)">
       </video>
     </div>
-    <div class="overflow-y-auto overflow-x-hidden w-1/4 bg-indigo-50 flex flex-col items-center">
-      <h1 class="font-bold text-3xl m-10">
+    <div class="h-screen max-w-max m-16 overflow-y-scroll overflow-x-hidden w-1/4 bg-indigo-50 flex flex-col items-center">
+      <h1 class="font-bold text-3xl my-16">
         Comments:
       </h1>
       <chatbubble
@@ -24,7 +24,6 @@
         @click.native="seek(cmt.timestamp)"
       />
     </div>
-
     <!--{{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]-->
   </div>
 </template>
@@ -78,6 +77,34 @@ export default {
         {
           message: 'why u always gotta bring hitler into the argument',
           timestamp: 22
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
+        },
+        {
+          message: 'good job show feet pics next time',
+          timestamp: 24
         },
         {
           message: 'good job show feet pics next time',
