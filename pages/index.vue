@@ -32,12 +32,17 @@ export default {
   },
 
   async mounted () {
-    this.vidList = await getVideoIndex()
-      .then(data => data)
+    const response = await getVideoIndex()
+    this.vidList = response.map((vid) => {
+      return {
+        ...vid,
+        name: ('' + vid.name).replace('.mp4', '')
+      }
+    }
+    )
   },
 
   methods: {
-
   }
 
 }

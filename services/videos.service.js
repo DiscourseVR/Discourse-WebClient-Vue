@@ -8,3 +8,11 @@ export const getVideoIndex = () => {
       err => err
     )
 }
+
+export const getCommentByName = (name) => {
+  return axios.get(API_URL + '/comments' + name + '.json')
+    .then(
+      res => res.data,
+      err => err
+    )
+}
