@@ -13,6 +13,10 @@
             {{ vidLink.name }}
           </NuxtLink>
         </div>
+
+        <button @click="testAnalytics">
+          ANAYLSE!
+        </button>
       </div>
     </div>
   </div>
@@ -20,6 +24,8 @@
 
 <script>
 import { getVideoIndex } from '../services/videos.service'
+import { getRawAudio, beginAsyncTranscript } from '../services/transcript.service'
+// import { getRawAudio } from '../services/transcript.service'
 
 export default {
 
@@ -43,6 +49,16 @@ export default {
   },
 
   methods: {
+    async testAnalytics (e) {
+      e.preventDefault()
+      const raw = await getRawAudio()
+      console.log(raw)
+      beginAsyncTranscript(raw)
+        .then(
+          data => console.log(data),
+          err => console.log(err.request)
+        )
+    }
   }
 
 }

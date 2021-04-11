@@ -9,7 +9,11 @@
 import videoplayer from '../../components/videoplayer'
 
 export default {
-  components: { videoplayer }
+  components: { videoplayer },
+
+  data () {
+
+  }
 
   // head () {
   //   return {

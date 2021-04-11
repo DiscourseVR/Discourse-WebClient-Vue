@@ -51,7 +51,7 @@ export default {
 
   methods: {
     syncCurrentTime () {
-      this.curTime = this.$refs.video.currentTime
+      this.curTime = this.$refs?.video?.currentTime
     },
 
     getVideoUrl (videoName) {
