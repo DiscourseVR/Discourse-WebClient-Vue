@@ -10,7 +10,7 @@ export const getVideoIndex = () => {
 }
 
 export const getCommentByName = (name) => {
-  return axios.get(API_URL + '/comments' + name + '.json')
+  return axios.get(API_URL + '/comments/' + name + '.json')
     .then(
       res => res.data,
       err => err

@@ -13,10 +13,10 @@
     <p>curTime {{ curTime }}</p>
     <div>
       <p
-        v-for="cmt in commentList"
-        :key="cmt"
+        v-for="(cmt,ind) in commentList"
+        :key="ind"
       >
-        {{ cmt }}
+        {{ cmt.sender }}: {{ cmt.message }} [{{ cmt.timestamp }}]
       </p>
     </div>
   </div>
@@ -55,6 +55,10 @@ export default {
 
     getVideoUrl (videoName) {
       return API_URL + '/vids/' + videoName + '.mp4'
+    },
+
+    getVisibleComments () {
+
     }
 
   }

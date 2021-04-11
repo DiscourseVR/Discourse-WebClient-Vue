@@ -6,8 +6,8 @@
       </h1>
       <div class="vidlist-body">
         <div
-          v-for="vidLink in vidList"
-          :key="vidLink"
+          v-for="(vidLink,ind) in vidList"
+          :key="ind"
         >
           <NuxtLink :to="`/videos/${vidLink.name}`">
             {{ vidLink.name }}
