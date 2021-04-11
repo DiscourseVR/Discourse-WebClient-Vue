@@ -11,7 +11,7 @@
         <source :src="getVideoUrl(vidUrl)">
       </video>
     </div>
-    <div class="h-screen max-w-max m-16 overflow-y-scroll overflow-x-hidden w-1/4 bg-indigo-50 flex flex-col items-center">
+    <div class="h-screen m-16 overflow-y-scroll overflow-x-hidden w-1/4 bg-indigo-50 flex flex-col items-center">
       <h1 class="font-bold text-3xl my-16">
         Comments:
       </h1>
